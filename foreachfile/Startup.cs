@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.FileProviders.Physical;
 using Microsoft.Extensions.Hosting;
 
 namespace foreachfile
@@ -26,7 +27,7 @@ namespace foreachfile
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            IFileProvider physicalProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory());
+            IFileProvider physicalProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory(), ExclusionFilters.None);
 
             services.AddSingleton<IFileProvider>(physicalProvider);
         }
