@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    })
+    function IFileProvider() {
+        $.ajax({
+            url: '/Home/getFilesIFileProvider',
+            method: 'GET',
+            dataType: 'json',
+            success: function (result) {
+                var data = eval(result);
+                for (var i = 0; i < data.length; i++) {
+                    $('.content').append("<div>id:" + data[i].id + ",filename:" + data[i].filename+"</div>");
+                }
+            },
+            error: function () {
+                alert("Oop, No Data Response");
+            }
+        })
+    }
+</script>
+@*<div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>*@
+<div>
+    <div>
+        <button onclick="IFileProvider()">IFileProvider</button>
+    </div>
+    <div class="content">
+        
+    </div>
+</div>
+
+
+
